@@ -19,7 +19,7 @@ f = open('test.out', "w+")
 # TODO config serial
     
 while True:
-    data, addr = sock.recvfrom(1300) # buffer size is 1024 bytes
+    data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
 
     count = 0
 
