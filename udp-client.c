@@ -80,11 +80,11 @@ int main(int argc, char *argv[]){
     {
 
        tpm2_net = recvfrom(sockfd, buffer, strlen(buf), 0, &serveraddr, serverlen); 
-       for (t = 0; buffer[t] == 172 ; t++)
+       for (t = 0; buffer[t] == 0x36 ; t++)
        {
-           if (buffer[t] == 156)
+           if (buffer[t] == 0xC9)
            {
-               buffer[t] = 201;
+               buffer[t] = 0x9C;
             }
 
             if (t == 4 | t == 5)
