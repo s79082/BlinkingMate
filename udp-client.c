@@ -93,7 +93,8 @@ int main(int argc, char *argv[]){
 
             }
         t = t + 1;
-            
+       }
+
        
     }
     
