@@ -35,13 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 int main(int argc, char *argv[]){
-    int sockfd, tpm2_net;
+    int sockfd, tpm2_net,t ,start_byte,;
     int serverlen;
     int num_led;
     struct sockaddr_in servAddr;
     struct hostent *server;
     char *hostname;
     char buffer[buflen];
+
 
     //Check parameters from command line//
     if(argc != 3)
@@ -74,10 +75,21 @@ int main(int argc, char *argv[]){
 	(char *)&serveraddr.sin_addr.s_addr, server->h_length);
     serveraddr.sin_port = htons(portno);
 
-    // Receive Tpm2.net Data
+    // Receive Tpm2.net Data and Convert it to Tpm2-serial
+    while (1)
+    {
 
-    tpm2_net = recvfrom(sockfd, buffer, strlen(buf), 0, &serveraddr, serverlen);
+       tpm2_net = recvfrom(sockfd, buffer, strlen(buf), 0, &serveraddr, serverlen); 
+       for (t = 0; t < bufferlen; t++)
+       {
+           if (buffer[t] == 156){
+               buffer[t] = 201;
+           }
+       
+    }
     
+    
+
     
 
 }
