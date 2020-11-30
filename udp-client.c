@@ -79,7 +79,12 @@ int main(int argc, char *argv[]){
     while (1)
     {
 
-       tpm2_net = recvfrom(sockfd, buffer, strlen(buf), 0, &serveraddr, serverlen); 
+        tpm2_net = recvfrom(sockfd, buffer, strlen(buf), 0, &serveraddr, serverlen); 
+       
+        // Open Serial Port
+        // ..
+
+        // Read Buffer, change StartByte and send to Serial
        for (t = 0; buffer[t] == 0x36 ; t++)
        {
            if (buffer[t] == 0xC9)
@@ -90,16 +95,12 @@ int main(int argc, char *argv[]){
             if (t == 4 | t == 5)
             {
                 t = 6;
-
             }
+
+        //write to serial and Wait for Next Iteration
+        //...
+        
         t = t + 1;
        }
-
-       
     }
-    
-    
-
-    
-
 }
